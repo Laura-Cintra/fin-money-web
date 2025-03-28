@@ -11,11 +11,15 @@ const initialState = {
     values: {
         name: "",
         icon: ""
+    },
+    errors: {
+        name: "",
+        icon: ""
     }
 }
 
 export default function Categoriespage(){
-    const[state, formAction, pendind] = useActionState(createCategory, initialState)
+    const[state, formAction, pendind] = useActionState(createCategory, initialState) // state - mudança do estado que vai sinalizar o erro
 
     return(
     <>
@@ -26,8 +30,15 @@ export default function Categoriespage(){
             <h2 className="font-bold">Cadastrar Categoria</h2>
 
             <form action={formAction} className="space-y-4 mt-6">
-                <Input name="name" placeholder="Nome da categoria"/>
-                <Input name="icon" placeholder="Ícone"/>
+                <div>
+                     <Input name="name" placeholder="Nome da categoria" aria-invalid={!!state?.errors.name}/> {/* !! --> gambiarra // se houver um erro no estado nome use o aria-invalid */}
+                    <span className="text-sm text-destructive">{state?.errors.name}</span>?
+                </div>
+                
+                <div>
+                    <Input name="icon" placeholder="Ícone" aria-invalid={!!state?.errors.icon}/>
+                    <span className="text-sm text-destructive">{state?.errors.icon}</span>?
+                </div>
 
                 <div className="flex justify-around">
                     <Button variant={"outline"} asChild>
