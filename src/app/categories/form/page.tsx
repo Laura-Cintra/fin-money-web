@@ -31,13 +31,24 @@ export default function Categoriespage(){
 
             <form action={formAction} className="space-y-4 mt-6">
                 <div>
-                     <Input name="name" placeholder="Nome da categoria" aria-invalid={!!state?.errors.name}/> {/* !! --> gambiarra // se houver um erro no estado nome use o aria-invalid */}
-                    <span className="text-sm text-destructive">{state?.errors.name}</span>?
+                    {/* !! --> gambiarra // se houver um erro no estado nome use o aria-invalid */}
+                     <Input 
+                     name="name" 
+                     placeholder="Nome da categoria" 
+                     aria-invalid={!!state?.errors.name}
+                     defaultValue={state?.values.name}
+                     /> 
+                    <span className="text-sm text-destructive">{state?.errors.name}</span>
                 </div>
                 
                 <div>
-                    <Input name="icon" placeholder="Ícone" aria-invalid={!!state?.errors.icon}/>
-                    <span className="text-sm text-destructive">{state?.errors.icon}</span>?
+                    <Input
+                     name="icon" 
+                     placeholder="Ícone" 
+                     aria-invalid={!!state?.errors.icon}
+                     defaultValue={state?.values.icon}
+                     /> 
+                    <span className="text-sm text-destructive">{state?.errors.icon}</span>
                 </div>
 
                 <div className="flex justify-around">
